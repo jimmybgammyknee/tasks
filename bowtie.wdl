@@ -22,6 +22,6 @@ task Bowtie {
     }
 
     output{
-        File samFile = "${sam}"
+        File samFile = sam 
     }
 }

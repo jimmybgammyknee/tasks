@@ -1,3 +1,26 @@
+task Sort {
+    String? precommand
+    File unsortedBam
+
+
+}
+
+
+task SamToBam {
+    String? preCommand
+    File samFile
+    String bamFilePath
+
+    command{
+        set -eo pipefail
+        ${preCommand}
+        samtools view -Sbh ${samFile} > ${bamFilePath}
+    }
+    output {
+        File outputBam = bamFilePath
+    }
+}
+
 task Index {
     String? preCommand
     String bamFilePath
