@@ -21,7 +21,11 @@ task Bowtie {
         ${sam}
     }
 
-    output{
+    output {
         File samFile = sam 
+    }
+
+    runtime {
+        cpu: threads
     }
 }
