@@ -1,5 +1,5 @@
 task Bowtie {
-    File reference
+    String reference
     File read1
     File? read2
     String outputPath
@@ -10,10 +10,9 @@ task Bowtie {
         ## https://vaneyckt.io/posts/safer_bash_scripts_with_set_euxo_pipefail/
         set -eo pipefail
         mkdir -p $(dirname ${outputPath})
-
         ${precommand}
-        bowtie \
-        ${"--threads" + threads} \
+        bowtie --sam \
+        ${"--threads " + threads} \
         ${reference} \
         ${true="-1 " false="" defined(read2)} ${read1} \
         ${"-2 " + read2} | \
